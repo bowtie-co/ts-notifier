@@ -1,0 +1,72 @@
+{
+  "name": "@bowtie/ts-notifier",
+  "version": "1.2.1",
+  "description": "ts-notifier",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "engines": {
+    "node": ">= 10.3.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "start": "npm run watch",
+    "audit": "npm audit",
+    "test": "jest",
+    "pack": "cat bin/pack | bash",
+    "ci:audit": "npm audit",
+    "ci:install": "npm install",
+    "ci:build": "npm run build",
+    "ci:setup": "npm run ci:install && npm run ci:build",
+    "ci:test": "npm test",
+    "ci:lint": "npm run lint",
+    "preci": "npm run ci:lint",
+    "ci": "npm run ci:test",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "doc": "typedoc --theme ./node_modules/typedoc-neo-theme/bin/default --plugin typedoc-neo-theme src",
+    "doc:commit": "npm run doc && git add docs && (git commit -m 'Generated Docs' || echo 'Docs unchanged')",
+    "preversion": "npm run ci && npm run doc:commit && npm run pack",
+    "postversion": "npm publish && git push --no-verify --follow-tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bowtie-co/ts-notifier.git"
+  },
+  "author": {
+    "name": "Bowtie",
+    "url": "https://bowtie.co",
+    "organization": true
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bowtie-co/ts-notifier/issues"
+  },
+  "homepage": "https://github.com/bowtie-co/ts-notifier#readme",
+  "dependencies": {
+    "@types/node": "^13.11.0",
+    "@types/node-fetch": "^2.5.5",
+    "@types/qs": "^6.9.1",
+    "node-fetch": "^2.6.0",
+    "qs": "^6.9.3",
+    "tsee": "^1.3.0"
+  },
+  "devDependencies": {
+    "@bowtie/prettier": "^1.4.0",
+    "@types/jest": "^25.2.1",
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
+    "@typescript-eslint/parser": "^2.26.0",
+    "eslint": "^6.8.0",
+    "eslint-config-bowtie": "^1.5.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "jest": "^25.2.7",
+    "prettier": "^2.0.2",
+    "terser": "^4.6.10",
+    "ts-jest": "^25.3.1",
+    "ts-node": "^8.8.2",
+    "typedoc": "^0.17.3",
+    "typedoc-neo-theme": "^1.0.7",
+    "typescript": "^3.8.3"
+  }
+}
